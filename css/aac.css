@@ -1,0 +1,21 @@
+/* AJAX Comments */
+
+.aac-comment-processing {
+	background: rgba( 200, 200, 200, .8 );
+	transition: .1s;
+}
+
+.aac-comment-error {
+	background: rgba( 200, 0, 0, .9 );
+	color: #fff;
+}
+
+.aac-field-error {
+	margin-left: .5em;
+	padding: .25em;
+	background: rgba( 255, 255, 180, .9 );
+}
+
+.aac-ajax-comment {
+	transition: .1s;
+}
