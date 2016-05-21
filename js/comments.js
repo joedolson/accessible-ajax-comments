@@ -72,7 +72,7 @@
 				url: formurl,
 				data: formdata,
 				dataType: 'json',
-				error: function( XMLHttpRequest, textStatus, errorThrown ) { // [localize]
+				error: function( XMLHttpRequest, textStatus, errorThrown ) {
 					statusdiv.html( '<p class="aac-comment-error">' + aac.flood + '</p>' ).focus();
 				},
 				success: function( data, textStatus ){
