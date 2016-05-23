@@ -36,7 +36,7 @@
 					var labelText = $(this).prev('label').html();
 					// add aria-describedby with reference ID for error message.
 					$(this).attr( 'aria-describedby', id );
-					$(this).parent().append( ' <span class="aac-field-error" id="' + id + '">' + aac.required + '</span>' );
+					$(this).parent().append( ' <span class="aac-field-error" id="' + id + '">' + labelText + ': ' + aac.required + '</span>' );
 					hasError = true;
 				}
 				if ( $(this).attr( 'name' ) == 'email' && $.trim( $(this).val() ) != '' ) {
@@ -72,7 +72,7 @@
 				url: formurl,
 				data: formdata,
 				dataType: 'json',
-				error: function( XMLHttpRequest, textStatus, errorThrown ) {
+				error: function( XMLHttpRequest, textStatus, errorThrown ) { // [localize]
 					statusdiv.html( '<p class="aac-comment-error">' + aac.flood + '</p>' ).focus();
 				},
 				success: function( data, textStatus ){
