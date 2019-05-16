@@ -7,9 +7,9 @@ Author: Joseph C Dolson
 Author URI: http://www.joedolson.com
 Text Domain: accessible-ajax-comments
 Domain Path: lang
-Version: 1.0.0
+Version: 1.1.0
 */
-/*  Copyright 2015  Joe Dolson (email : joe@joedolson.com)
+/*  Copyright 2015-2019  Joe Dolson (email : joe@joedolson.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ add_action( 'wp_enqueue_scripts','aac_enqueue_scripts' );
 function aac_enqueue_scripts() {
 	if ( is_singular() && comments_open() ) {
 		wp_enqueue_style( 'aac.style', plugins_url( "/css/aac.css", __FILE__ ) );
-		wp_enqueue_script( 'aac.comments', plugins_url( "/js/comments.js", __FILE__ ), array('jquery'), '1.0.0', true );
+		wp_enqueue_script( 'aac.comments', plugins_url( "/js/comments.js", __FILE__ ), array('jquery'), '1.1.0', true );
 		$comment_i18n = array( 
 			'processing' => __( 'Processing...', 'accessible-ajax-comments' ),
 			'flood' => sprintf( __( 'Your comment was either a duplicate or you are posting too rapidly. <a href="%s">Edit your comment</a>', 'accessible-ajax-comments' ), '#comment' ),
