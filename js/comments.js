@@ -10,9 +10,8 @@
 		commentForm.attr( 'aria-live', 'polite' );
 		/**
 		 * Add a comment status region with role=status to provide feedback on errors or successes.
-		 * Set tabindex=-1 so that this container can receive focus.
 		 */
-		commentForm.prepend('<div id="comment-status" aria-live="assertive" role="status" tabindex="-1"></div>');
+		commentForm.prepend('<div id="comment-status" aria-live="assertive" role="status"></div>');
 		var statusdiv = $('#comment-status');
 		var list;
 		$('a.comment-reply-link').click( function() {
@@ -50,9 +49,6 @@
 				}
 			});
 
-			/**
-			 * If an error is generated, return without submitting the form & set focus to status div.
-			 */
 			if ( hasError ) {
 				statusdiv.html( '<p class="aac-comment-error">' + aac.error + '</p>' );
 				return false;
@@ -80,9 +76,6 @@
 					var message = data.response;
 					var status = data.status;
 					if ( success ) {
-						/**
-						 * Because the successful comment message includes a link, set focus to the message to give easy access to user.
-						 */
 						statusdiv.html('<p class="aac-comment-success" >'+status+'</p>');
 						//alert(data);
 
@@ -98,9 +91,6 @@
 						}
 						commentForm.find('textarea[name=comment]').val('');
 					} else {
-						/**
-						 * Set focus to error field so user can quickly tab forward into comment fields.
-						 */
 						statusdiv.html('<p class="aac-comment-error" >'+status+'</p>');
 						commentForm.find('textarea[name=comment]').val('');
 					}
