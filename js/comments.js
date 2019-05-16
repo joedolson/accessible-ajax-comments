@@ -75,6 +75,7 @@
 					var success = data.success;
 					var message = data.response;
 					var status = data.status;
+					console.log( data.success );
 					if ( success ) {
 						statusdiv.html('<p class="aac-comment-success" >'+status+'</p>');
 						//alert(data);
@@ -92,7 +93,6 @@
 						commentForm.find('textarea[name=comment]').val('');
 					} else {
 						statusdiv.html('<p class="aac-comment-error" >'+status+'</p>');
-						commentForm.find('textarea[name=comment]').val('');
 					}
 				}
 			} );
