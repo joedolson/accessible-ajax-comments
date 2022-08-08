@@ -27,7 +27,7 @@ Version: 1.1.0
 */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  
-add_action( 'wp_enqueue_scripts','aac_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'aac_enqueue_scripts' );
 /**
  * Enqueue scripts to handle AJAX comments. Localize script to pass translated responses.
  * Enqueue comment-reply scripts.
