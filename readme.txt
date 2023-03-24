@@ -5,7 +5,7 @@ Tags: a11y, accessibility, wcag, wave, section508, comments, ajax
 Requires at least: 3.9.2
 Tested up to: 4.5
 License: GPLv2 or later
-Stable tag: 1.0.0
+Stable tag: 1.3.0
 
 Adds accessible AJAX-driven handling of comment submission.
 

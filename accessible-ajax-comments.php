@@ -7,7 +7,7 @@ Author: Joseph C Dolson
 Author URI: http://www.joedolson.com
 Text Domain: accessible-ajax-comments
 Domain Path: lang
-Version: 1.2.0
+Version: 1.3.0
 */
 /*  Copyright 2015-2023  Joe Dolson (email : joe@joedolson.com)
 
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string
  */
 function aac_version() {
-	return '1.2.0';
+	return '1.3.0';
 }
  
 add_action( 'wp_enqueue_scripts', 'aac_enqueue_scripts' );
@@ -47,14 +47,15 @@ add_action( 'wp_enqueue_scripts', 'aac_enqueue_scripts' );
 function aac_enqueue_scripts() {
 	if ( is_singular() && comments_open() ) {
 		$version = ( SCRIPT_DEBUG ) ? mt_rand( 10000, 100000 ) : aac_version();
-		wp_enqueue_style( 'aac.style', plugins_url( '/css/aac.css', __FILE__ ), array(), $version );
+		wp_enqueue_style( 'aac.style', plugins_url( '/css/aac.css', __FILE__ ), array( 'dashicons' ), $version );
 		wp_enqueue_script( 'aac.comments', plugins_url( '/js/comments.js', __FILE__ ), array( 'jquery' ), $version, true );
 		$comment_i18n = array( 
-			'processing'   => __( 'Processing...', 'accessible-ajax-comments' ),
-			'flood'        => sprintf( __( 'Your comment was either a duplicate or you are posting too rapidly. <a href="%s">Edit your comment</a>', 'accessible-ajax-comments' ), '#comment' ),
-			'error'        => __( 'There were errors in submitting your comment; complete the missing fields and try again!', 'accessible-ajax-comments' ),
-			'emailInvalid' => __( 'That email appears to be invalid.', 'accessible-ajax-comments' ),
-			'required'     => __( 'This is a required field.', 'accessible-ajax-comments' ),
+			'processing'     => __( 'Processing...', 'accessible-ajax-comments' ),
+			'flood'          => sprintf( __( 'Your comment was either a duplicate or you are posting too rapidly. <a href="%s">Edit your comment</a>', 'accessible-ajax-comments' ), '#comment' ),
+			'error'          => __( 'There were errors in submitting your comment; complete the missing fields and try again!', 'accessible-ajax-comments' ),
+			'emailInvalid'   => __( 'That email appears to be invalid.', 'accessible-ajax-comments' ),
+			'commentInvalid' => __( 'Your comment cannot be empty.', 'accessible-ajax-comments' ),
+			'required'       => __( ' is a required field.', 'accessible-ajax-comments' ),
 		);
 		wp_localize_script( 'aac.comments', 'aac', $comment_i18n );
 	}

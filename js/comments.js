@@ -5,10 +5,6 @@
 	$('document').ready( function( $ ) {
 		var commentForm = $('#commentform');
 		/**
-		 * Add aria-live attribute so message errors appended to input fields will be read by assistive technology.
-		 */
-		commentForm.attr( 'aria-live', 'polite' );
-		/**
 		 * Add a comment status region with role=status to provide feedback on errors or successes.
 		 */
 		commentForm.prepend('<div id="comment-status" aria-live="assertive" role="status"></div>');
@@ -26,16 +22,16 @@
 			$( '#commentform .aac-field-error' ).remove();
 			var hasError = false;
 			/**
-			 * Find all form fields with aria-required=true to test values before submitting.
+			 * Find all form fields with required attribute to test values before submitting.
 			 * If error generated, print error.
 			 */
-			$( '#commentform [aria-required=true]' ).each( function() {
+			$( '#commentform input,textarea' ).filter('[required]').each( function() {
 				var id = $(this).attr( 'id' ) + '-error';
 				if ( $.trim( $(this).val() ) == '' ) {
-					var labelText = $(this).prev('label').html();
+					var labelText = $(this).prev('label').text().replace( ' *', '' );
 					// add aria-describedby with reference ID for error message.
 					$(this).attr( 'aria-describedby', id );
-					$(this).parent().append( ' <span class="aac-field-error" id="' + id + '">' + labelText + ': ' + aac.required + '</span>' );
+					$(this).parent().append( ' <span class="aac-field-error" id="' + id + '"><span class="dashicons dashicons-no" aria-label="Error"></span><strong>' + labelText + '</strong> ' + aac.required + '</span>' );
 					hasError = true;
 				}
 				if ( $(this).attr( 'name' ) == 'email' && $.trim( $(this).val() ) != '' ) {
@@ -43,14 +39,14 @@
 					var valid = yourthemeValidateEmail( value );
 					if ( !valid ) {
 						$(this).attr( 'aria-describedby', id );
-						$(this).parent().append( ' <span class="aac-field-error"id="' + id + '">' + aac.emailInvalid + '</span>' );
+						$(this).parent().append( ' <span class="aac-field-error"id="' + id + '"><span class="dashicons dashicons-no" aria-label="Error"></span>' + aac.emailInvalid + '</span>' );
 						hasError = true;
 					}
 				}
 			});
 
 			if ( hasError ) {
-				statusdiv.html( '<p class="aac-comment-error">' + aac.error + '</p>' );
+				statusdiv.html( '<p class="aac-comment-error"><span class="dashicons dashicons-no" aria-label="Error"></span>' + aac.error + '</p>' );
 				return false;
 			}
 
@@ -75,7 +71,6 @@
 					var success = data.success;
 					var message = data.response;
 					var status = data.status;
-					console.log( data.success );
 					if ( success ) {
 						statusdiv.html('<p class="aac-comment-success" >'+status+'</p>');
 						//alert(data);
